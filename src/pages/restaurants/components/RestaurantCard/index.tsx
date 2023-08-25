@@ -1,28 +1,14 @@
 import clsx from 'clsx'
 import styles from './restaurant-card.module.scss'
 import Rating from '@/components/Rating'
+import { Vendor } from '@/api/vendors-list/types'
+import { toFa } from '@/utils/number'
 
 interface Props {
-    // title: string
-    // cover: string
-    // avatar: string
-    // rating: {
-    //     rate: number
-    //     count: number
-    // }
-    // discount: number
-    // pro: {
-    //     freeDelivery: boolean
-    //     discount: number
-    // }
-    // delivery: {
-    //     type: 'seller' | 'express'
-    //     fee: number
-    //     duration: string
-    // }
+    data: Vendor
 }
 
-const RestaurantCard: React.FC<Props> = () => {
+const RestaurantCard: React.FC<Props> = ({ data }) => {
     return (
         <div
             className={clsx(
@@ -37,7 +23,7 @@ const RestaurantCard: React.FC<Props> = () => {
                 )}
             >
                 <div className={styles.RestaurantCard__header__cover}>
-                    <img src="https://cdn.snappfood.ir/350x233/uploads/images/vendors/covers/5bcefa5438a82.jpg" />
+                    <img src={data.coverPath || data.backgroundImage} />
                 </div>
                 <div
                     className={clsx(
@@ -45,7 +31,7 @@ const RestaurantCard: React.FC<Props> = () => {
                         styles.RestaurantCard__header__avatar
                     )}
                 >
-                    <img src="https://cdn.snappfood.ir/media/cache/vendor_logo/uploads/images/vendors/logos/5c166e3b51771.jpg" />
+                    <img src={data.defLogo} />
                 </div>
                 <div></div>
             </header>
@@ -57,18 +43,35 @@ const RestaurantCard: React.FC<Props> = () => {
                 )}
             >
                 <div className="d-flex">
-                    <h2 className="text-heading grow-1">رستوران فلان</h2>
-                    <Rating rating={4.6} />
+                    <h2 className="text-heading grow-1">{data.title}</h2>
+                    <Rating
+                        rating={toFa(data.rate)}
+                        count={toFa(data.countReview)}
+                    />
                 </div>
 
-                <p className="text-body">فست‌فود پیتزا ساندویچ برگر</p>
+                <div className="d-flex text-body gap-2">
+                    {data.cuisinesArray.map((cuisin) => (
+                        <span key={cuisin.id}>{cuisin.title}</span>
+                    ))}
+                </div>
 
-                <div className="d-flex mt-1 text-body gap-1 d-flex ai-center">
-                    <span className="text-body-light">پیک فروشنده</span>
-                    <div>
-                        <span>۱۲،۳۰۰</span>
-                        <span>تومان</span>
-                    </div>
+                <div className="d-flex mt-1 ai-center">
+                    {data.deliver ? (
+                        <div className="d-flex ai-center gap-1 text-body">
+                            <span className="text-body-light">پیک فروشنده</span>
+                            <div>
+                                {data.deliveryFee > 0 ? (
+                                    <>
+                                        <span>{toFa(data.deliveryFee)}</span>
+                                        <span>تومان</span>
+                                    </>
+                                ) : (
+                                    'رایگان'
+                                )}
+                            </div>
+                        </div>
+                    ) : null}
                 </div>
             </main>
         </div>
