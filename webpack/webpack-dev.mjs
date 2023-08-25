@@ -18,6 +18,22 @@ export default {
     filename: '[name].[contenthash].js',
     publicPath: '/',
   },
+  devServer: {
+    static: {
+      directory: path.join(__dirname, 'public'),
+    },
+    client: {
+      reconnect: 5,
+      overlay: true,
+      progress: true,
+      logging: 'none',
+    },
+    port: 3000,
+    open: false,
+    compress: false,
+    historyApiFallback: true,
+    hot: true,
+  },
   module: {
     rules: [
       {
