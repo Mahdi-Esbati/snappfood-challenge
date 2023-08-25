@@ -27,6 +27,11 @@
             "@/*": ["./src/*"]
         }
     },
-    "include": ["**/*.ts", "**/*.tsx"],
+    "include": [
+        "**/*.ts",
+        "**/*.tsx",
+        "./src/types/global.d.ts",
+        "./src/types/declarations.d.ts"
+    ],
     "exclude": ["node_modules"]
 }

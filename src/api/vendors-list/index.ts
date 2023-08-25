@@ -6,6 +6,10 @@ export const getVendorsListAPI: ApiRequestObject<
     VendorsListResponse
 > = {
     endpoint: `restaurant/vendors-list`,
-    body: { lat: 35.754, long: 51.328, page: 0, page_size: 10 },
+    body: { lat: 35.754, long: 51.328 },
     method: 'GET',
+    transformer: (rawResponse) => {
+        if (rawResponse && 'data' in rawResponse) return rawResponse.data
+        return rawResponse
+    },
 }

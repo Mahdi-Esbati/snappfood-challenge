@@ -6,7 +6,8 @@ type FetchMethod = 'GET' | 'POST'
 export type ApiRequestObject<RequestType, _ResponseType> = {
     endpoint: string
     method: FetchMethod
-    body?: RequestType
+    body?: Partial<RequestType>
+    transformer?: (rawResponse: any) => _ResponseType
 }
 
 const generateQueryParams = (
@@ -47,7 +48,9 @@ async function httpService<RequestType, ResponseType>(
         if (!response.ok) {
             throw new Error(`Request failed with status ${response.status}`)
         }
-        const data = (await response.json()) as ResponseType
+        let data = (await response.json()) as ResponseType
+        if (request.transformer) data = request.transformer(data)
+
         return data
     } catch (error: any) {
         throw new Error(`An error occurred: ${error?.message}`)
