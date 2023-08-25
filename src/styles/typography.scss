@@ -7,6 +7,13 @@
 .text-body {
     font-size: var(--text-small);
     font-weight: var(--font-regular);
+    color: var(--color-text);
+}
+
+.text-body-light {
+    font-size: var(--text-small);
+    font-weight: var(--font-regular);
+    color: var(--color-text-light);
 }
 
 .text-body-bold {

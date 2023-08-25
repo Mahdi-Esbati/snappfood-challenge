@@ -23,5 +23,8 @@ export default {
     plugins: [html],
     resolve: {
         extensions: ['.js', '.jsx', '.tsx', '.ts', '.json'],
+        alias: {
+            '@': path.resolve('src'),
+        },
     },
 }

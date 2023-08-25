@@ -1,31 +1,55 @@
 /* general utility classes */
 
-$directions: (
-    '': '',
-    't': 'top',
-    'b': 'bottom',
-    'l': 'left',
-    'r': 'right',
+$direction_map: (
+    '': (
+        '',
+    ),
+    'x': (
+        'left',
+        'right',
+    ),
+    'y': (
+        'top',
+        'bottom',
+    ),
+    't': (
+        'top',
+    ),
+    'b': (
+        'bottom',
+    ),
+    'l': (
+        'left',
+    ),
+    'r': (
+        'right',
+    ),
 );
 
-$steps: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 20, auto];
+$steps: (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 20, auto);
+
+@mixin generate-spacing($property, $directions, $spacing) {
+    @each $direction in $directions {
+        @if ($direction != '') {
+            #{$property}#{'-' + $direction}: calc(var(--spacing) * #{$spacing});
+        } @else {
+            #{$property}: calc(var(--spacing) * #{$spacing});
+        }
+    }
+}
 
 @each $i in $steps {
-    @each $short, $direction in $directions {
+    @each $short, $directions in $direction_map {
         .p#{$short}-#{$i} {
-            @if ($direction != '') {
-                padding#{'-' + $direction}: calc(var(--spacing) * #{$i});
-            } @else {
-                padding: calc(var(--spacing) * #{$i});
-            }
+            @include generate-spacing('padding', $directions, $i);
         }
-        .m#{$direction}-#{$i} {
-            @if ($direction != '') {
-                padding#{'-' + $direction}: calc(var(--spacing) * #{$i});
-            } @else {
-                padding: calc(var(--spacing) * #{$i});
-            }
+        .m#{$short}-#{$i} {
+            @include generate-spacing('margin', $directions, $i);
         }
+    }
+
+    .gap-#{$i} {
+        gap: calc(var(--spacing) * #{$i});
     }
 }
 
@@ -65,4 +89,12 @@ $steps: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 20, auto];
 /* shadow utility classes */
 .shadow-main {
     box-shadow: var(--shadow-main);
+}
+
+$positions: ('relative', 'absolute', 'static', 'fixed', 'static');
+
+@each $pos in $positions {
+    .pos-#{$pos} {
+        position: #{$pos};
+    }
 }
