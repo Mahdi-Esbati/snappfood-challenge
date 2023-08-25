@@ -5,6 +5,7 @@ import { html } from './plugins/index.mjs';
 
 const __dirname = path.resolve();
 
+/** @type { import('webpack').Configuration } */
 export default {
   mode: 'development',
   context: __dirname,
