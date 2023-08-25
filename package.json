@@ -1,0 +1,8 @@
+{
+  "name": "snappfood-challenge",
+  "version": "0.0.0",
+  "description": "The challenge to implement the store list page from Snappfood web app",
+  "main": "index.js",
+  "author": "Mahdi Esbati",
+  "license": "MIT"
+}
