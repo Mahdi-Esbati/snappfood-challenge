@@ -2,10 +2,11 @@ import clsx from 'clsx'
 import styles from './rating.module.scss'
 
 interface Props {
-    rating: number
+    rating: number | string
+    count: number | string
 }
 
-const Rating: React.FC<Props> = ({ rating }) => {
+const Rating: React.FC<Props> = ({ rating, count }) => {
     return (
         <div
             className={clsx(
@@ -17,7 +18,7 @@ const Rating: React.FC<Props> = ({ rating }) => {
             <span className={clsx('text-body', styles.Rating__container)}>
                 ★ {rating}
             </span>
-            <span className="text-body-light">(42,321)</span>
+            <span className="text-body-light">({count})</span>
         </div>
     )
 }
