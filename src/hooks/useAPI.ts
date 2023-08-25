@@ -26,9 +26,10 @@ function useAPI<RequestType, ResponseType>(
     const [data, setData] = useState<ResponseType | null>(null)
 
     const request = async (data?: RequestType) => {
+        let response: ResponseType | null = null
         setPending(true)
         try {
-            const response = await httpService(apiRequestObject, {
+            response = await httpService(apiRequestObject, {
                 ...((requestData || {}) as RequestType),
                 ...((data || {}) as RequestType),
             })
@@ -42,6 +43,7 @@ function useAPI<RequestType, ResponseType>(
             }
         } finally {
             setPending(false)
+            return response
         }
     }
 

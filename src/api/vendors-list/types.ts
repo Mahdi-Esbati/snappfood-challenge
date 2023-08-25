@@ -84,11 +84,10 @@ export interface Vendor {
 }
 
 export type VendorsListRequest = Partial<{
-    page: number
-    page_size: number
     lat: number
     long: number
-}>
+}> &
+    PaginatedRequest
 
 export type VendorResponse = {
     type: 'VENDOR'
@@ -101,14 +100,9 @@ export type TextResponse = {
 }
 
 export type VendorsListResponse = {
-    render_type: number
-    status: boolean
-    data: {
-        count: number
-        finalResult: (VendorResponse | TextResponse)[]
-        open_count: number
-    }
-}
+    finalResult: (VendorResponse | TextResponse)[]
+    open_count: number
+} & PaginatedResponse
 
 export function isVendor(
     data: VendorResponse | TextResponse

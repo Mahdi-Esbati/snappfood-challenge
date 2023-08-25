@@ -1,22 +1,29 @@
-import useAPI from '@/hooks/useAPI'
 import { getVendorsListAPI } from '@/api/vendors-list'
 import VendorRenderer from './components/VendorRenderer'
+import { useInfiniteData } from '@/hooks/useInfiniteData'
+import { useIntersectionObserver } from '@/hooks/useIntersectionObserver'
+import { useRef } from 'react'
 
 const RestaurantsPage = () => {
-    const { data, pending } = useAPI({
+    const intersectionRef = useRef<HTMLDivElement>(null)
+    const { paginatedData, handleNextPage } = useInfiniteData({
         apiRequestObject: getVendorsListAPI,
-        fetchOnMount: true,
-        requestData: { page: 0 },
+        getPageData: (response) => response.finalResult,
+        itemsPerPage: 10,
+        requestData: {},
+        debounceTime: 500,
     })
-
-    console.log({ data, pending })
+    useIntersectionObserver(intersectionRef, { onIntersection: handleNextPage })
 
     return (
         <main className="p-4 pt-6">
             <h2 className="text-title">رستوران ها</h2>
 
             <div className="d-flex flex-column ai-center gap-6">
-                <VendorRenderer data={data?.data?.finalResult || []} />
+                <VendorRenderer
+                    data={paginatedData.flatMap((data) => data) || []}
+                />
+                <div ref={intersectionRef} />
             </div>
         </main>
     )
