@@ -9,6 +9,7 @@ type UseAPIOptions<RequestType, ResponseType> = {
     onSuccess?: SuccessCallback<ResponseType>
     onError?: ErrorCallback
     fetchOnMount?: boolean
+    requestData?: RequestType
 }
 
 function useAPI<RequestType, ResponseType>(
@@ -19,14 +20,18 @@ function useAPI<RequestType, ResponseType>(
         onSuccess,
         onError,
         fetchOnMount = false,
+        requestData,
     } = options
     const [pending, setPending] = useState(false)
     const [data, setData] = useState<ResponseType | null>(null)
 
-    const request = async () => {
+    const request = async (data?: RequestType) => {
         setPending(true)
         try {
-            const response = await httpService(apiRequestObject)
+            const response = await httpService(apiRequestObject, {
+                ...((requestData || {}) as RequestType),
+                ...((data || {}) as RequestType),
+            })
             setData(response)
             if (onSuccess) {
                 onSuccess(response)

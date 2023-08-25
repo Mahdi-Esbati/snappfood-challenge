@@ -14,17 +14,24 @@ const generateQueryParams = (
 ) => new URLSearchParams(data)
 
 async function httpService<RequestType, ResponseType>(
-    request: ApiRequestObject<RequestType, ResponseType>
+    request: ApiRequestObject<RequestType, ResponseType>,
+    data?: RequestType
 ): Promise<ResponseType> {
+    const requestData = (() => {
+        let res = {}
+        if (request.body) res = { ...res, ...request.body }
+        if (data) res = { ...res, ...data }
+        return res
+    })()
+
     const requestOptions: RequestInit = {
         method: request.method,
         headers: {
             'Content-Type': 'application/json',
         },
+        // @ts-ignore
         body:
-            request.method !== 'GET' && request.body
-                ? JSON.stringify(request.body)
-                : undefined,
+            request.method !== 'GET' ? JSON.stringify(requestData) : undefined,
     }
 
     try {
@@ -32,7 +39,7 @@ async function httpService<RequestType, ResponseType>(
             `${BASE_URL}/${request.endpoint}${
                 request.method === 'GET'
                     ? // @ts-ignore
-                      `?${generateQueryParams(request.body)}`
+                      `?${generateQueryParams(requestData)}`
                     : ''
             }`,
             requestOptions

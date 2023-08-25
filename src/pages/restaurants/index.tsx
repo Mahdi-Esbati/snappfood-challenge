@@ -6,6 +6,7 @@ const RestaurantsPage = () => {
     const { data: vendors, pending } = useAPI({
         apiRequestObject: getVendorsListAPI,
         fetchOnMount: true,
+        requestData: { page: 2 },
     })
 
     console.log({ vendors, pending })
