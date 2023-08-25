@@ -1,24 +1,22 @@
 import useAPI from '@/hooks/useAPI'
-import RestaurantCard from './components/RestaurantCard'
 import { getVendorsListAPI } from '@/api/vendors-list'
+import VendorRenderer from './components/VendorRenderer'
 
 const RestaurantsPage = () => {
-    const { data: vendors, pending } = useAPI({
+    const { data, pending } = useAPI({
         apiRequestObject: getVendorsListAPI,
         fetchOnMount: true,
-        requestData: { page: 2 },
+        requestData: { page: 0 },
     })
 
-    console.log({ vendors, pending })
+    console.log({ data, pending })
 
     return (
         <main className="p-4 pt-6">
             <h2 className="text-title">رستوران ها</h2>
 
             <div className="d-flex flex-column ai-center gap-6">
-                {new Array(40).fill(null).map(() => (
-                    <RestaurantCard />
-                ))}
+                <VendorRenderer data={data?.data?.finalResult || []} />
             </div>
         </main>
     )
