@@ -1,3 +1,3 @@
-import html from './html.mjs';
+import html from './html.mjs'
 
-export { html };
+export { html }
