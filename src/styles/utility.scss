@@ -1,0 +1,39 @@
+/* general utility classes */
+
+.w-100 {
+  width: 100%;
+}
+
+.h-100 {
+  height: 100%;
+}
+
+/* flex utility classes */
+.d-flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.jc-center {
+  justify-content: center;
+}
+
+.jc-between {
+  justify-content: space-between;
+}
+
+.ai-center {
+  align-items: center;
+}
+
+.grow-1 {
+  flex-grow: 1;
+}
+
+/* shadow utility classes */
+.shadow-main {
+  box-shadow: var(--shadow-main);
+}
