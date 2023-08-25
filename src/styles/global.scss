@@ -1,0 +1,9 @@
+html {
+    background-color: var(--color-background);
+    color: var(--color-text);
+    direction: rtl;
+}
+
+* {
+    transition: background var(--transition-main);
+}

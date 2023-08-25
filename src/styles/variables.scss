@@ -1,0 +1,47 @@
+:root {
+    --color-primary: #fff;
+    --color-background: #f8f9fb;
+
+    --color-text: #404040;
+    --color-text-light: #a3a3a3;
+
+    --color-input: rgba(19, 20, 31, 0.05);
+    --color-shadow: rgba(0, 0, 0, 0.1);
+
+    --text-small: 12px;
+    --text-medium: 14px;
+    --text-size: 16px;
+    --text-large: 17px;
+    --text-m-large: 18px;
+    --text-x-large: 20px;
+    --text-xx-large: 22px;
+    --text-xxx-large: 24px;
+    --text-xxxx-large: 32px;
+
+    --font-ultraLight: 200;
+    --font-light: 300;
+    --font-regular: 400;
+    --font-medium: 500;
+    --font-bold: 600;
+    --font-bolder: 700;
+
+    --spacing: 4px;
+    --max-width: 1232px;
+
+    --shadow-main: 0 2px 8px 0 var(--color-shadow);
+    --card-shadow-1: 0 2px 8px 0 var(--color-shadow);
+    --vendors-card-shadow: rgba(64, 64, 64, 0.12);
+    --card-shadow-2: 0 2px 12px 0 var(--color-shadow);
+
+    --transition-main: 0.3s ease-in-out;
+
+    --dark-bilbao-color: rgba(63, 126, 0, 0.08);
+    --starcolor-default: #305d02;
+}
+
+[data-theme='dark'] {
+    --color-primary: hsl(209, 23%, 22%);
+    --color-background: hsl(207, 26%, 17%);
+    --color-text: hsl(0, 0%, 100%);
+    --color-input: hsl(0, 0%, 52%);
+}

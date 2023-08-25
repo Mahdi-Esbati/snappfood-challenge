@@ -2,6 +2,7 @@ import path from 'path'
 
 import { css, typescript, babel, devServer } from './modules/index.mjs'
 import { html } from './plugins/index.mjs'
+import { calculateRules } from './utils/rules.mjs'
 
 const __dirname = path.resolve()
 
@@ -17,10 +18,13 @@ export default {
     },
     devServer,
     module: {
-        rules: [babel, typescript, css],
+        rules: calculateRules([babel, typescript, css]),
     },
     plugins: [html],
     resolve: {
         extensions: ['.js', '.jsx', '.tsx', '.ts', '.json'],
+        alias: {
+            '@': path.resolve('src'),
+        },
     },
 }

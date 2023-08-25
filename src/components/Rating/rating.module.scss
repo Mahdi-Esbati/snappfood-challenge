@@ -1,0 +1,11 @@
+.Rating {
+    direction: ltr;
+
+    &__container {
+        padding: 0px 4px;
+        border-radius: 4px;
+        background-color: var(--dark-bilbao-color);
+        color: var(--starcolor-default);
+        overflow: hidden;
+    }
+}

@@ -22,7 +22,10 @@
         "checkJs": false,
         "strict": true,
         "moduleResolution": "node",
-        "baseUrl": "."
+        "baseUrl": ".",
+        "paths": {
+            "@/*": ["./src/*"]
+        }
     },
     "include": ["**/*.ts", "**/*.tsx"],
     "exclude": ["node_modules"]
