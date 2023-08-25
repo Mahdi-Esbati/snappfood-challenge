@@ -1,7 +1,10 @@
 :root {
     --color-primary: #fff;
     --color-background: #f8f9fb;
+
     --color-text: #404040;
+    --color-text-light: #a3a3a3;
+
     --color-input: rgba(19, 20, 31, 0.05);
     --color-shadow: rgba(0, 0, 0, 0.1);
 
@@ -31,6 +34,9 @@
     --card-shadow-2: 0 2px 12px 0 var(--color-shadow);
 
     --transition-main: 0.3s ease-in-out;
+
+    --dark-bilbao-color: rgba(63, 126, 0, 0.08);
+    --starcolor-default: #305d02;
 }
 
 [data-theme='dark'] {
