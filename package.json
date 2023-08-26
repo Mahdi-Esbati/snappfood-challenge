@@ -1,33 +1,42 @@
 {
-  "name": "snappfood-challenge",
-  "version": "0.0.0",
-  "description": "The challenge to implement the store list page from Snappfood web app",
-  "main": "index.js",
-  "author": "Mahdi Esbati",
-  "license": "MIT",
-  "scripts": {
-    "dev": "webpack serve --config webpack/webpack-dev.mjs"
-  },
-  "devDependencies": {
-    "@babel/cli": "^7.22.10",
-    "@babel/core": "^7.22.11",
-    "@babel/preset-env": "^7.22.10",
-    "@types/react": "^18.2.21",
-    "@types/react-dom": "^18.2.7",
-    "babel-loader": "^9.1.3",
-    "css-loader": "^6.8.1",
-    "html-webpack-plugin": "^5.5.3",
-    "sass": "^1.66.1",
-    "sass-loader": "^13.3.2",
-    "style-loader": "^3.3.3",
-    "ts-loader": "^9.4.4",
-    "typescript": "^5.2.2",
-    "webpack": "^5.88.2",
-    "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^4.15.1"
-  },
-  "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  }
+    "name": "snappfood-challenge",
+    "version": "0.0.0",
+    "description": "The challenge to implement the store list page from Snappfood web app",
+    "main": "index.js",
+    "author": "Mahdi Esbati",
+    "license": "MIT",
+    "scripts": {
+        "dev": "webpack serve --config webpack/webpack-dev.mjs"
+    },
+    "devDependencies": {
+        "@babel/cli": "^7.22.10",
+        "@babel/core": "^7.22.11",
+        "@babel/preset-env": "^7.22.10",
+        "@types/react": "^18.2.21",
+        "@types/react-dom": "^18.2.7",
+        "babel-loader": "^9.1.3",
+        "css-loader": "^6.8.1",
+        "html-webpack-plugin": "^5.5.3",
+        "prettier": "^3.0.2",
+        "sass": "^1.66.1",
+        "sass-loader": "^13.3.2",
+        "style-loader": "^3.3.3",
+        "ts-loader": "^9.4.4",
+        "typescript": "^5.2.2",
+        "webpack": "^5.88.2",
+        "webpack-cli": "^5.1.4",
+        "webpack-dev-server": "^4.15.1"
+    },
+    "dependencies": {
+        "@types/react-window": "^1.8.5",
+        "clsx": "^2.0.0",
+        "localforage": "^1.10.0",
+        "match-sorter": "^6.3.1",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-router-dom": "^6.15.0",
+        "react-virtualized-auto-sizer": "^1.0.20",
+        "react-window": "^1.8.9",
+        "sort-by": "^1.2.0"
+    }
 }

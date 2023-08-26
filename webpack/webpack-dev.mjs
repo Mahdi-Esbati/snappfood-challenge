@@ -1,82 +1,30 @@
-import path from 'path';
-import HtmlWebPackPlugin from 'html-webpack-plugin';
+import path from 'path'
 
-const __dirname = path.resolve();
+import { css, typescript, babel, devServer } from './modules/index.mjs'
+import { html } from './plugins/index.mjs'
+import { calculateRules } from './utils/rules.mjs'
 
-const htmlWebpackPlugin = new HtmlWebPackPlugin({
-  template: path.resolve(__dirname, './public/index.html'),
-  filename: './index.html',
-  inject: 'body',
-});
+const __dirname = path.resolve()
 
+/** @type { import('webpack').Configuration } */
 export default {
-  mode: 'development',
-  context: __dirname,
-  entry: './src/index.tsx',
-  output: {
-    path: path.resolve(__dirname, './dist'),
-    filename: '[name].[contenthash].js',
-    publicPath: '/',
-  },
-  devServer: {
-    static: {
-      directory: path.join(__dirname, 'public'),
+    mode: 'development',
+    context: __dirname,
+    entry: './src/index.tsx',
+    output: {
+        path: path.resolve(__dirname, './dist'),
+        filename: '[name].[contenthash].js',
+        publicPath: '/',
     },
-    client: {
-      reconnect: 5,
-      overlay: true,
-      progress: true,
-      logging: 'none',
+    devServer,
+    module: {
+        rules: calculateRules([babel, typescript, css]),
     },
-    port: 3000,
-    open: false,
-    compress: false,
-    historyApiFallback: true,
-    hot: true,
-  },
-  module: {
-    rules: [
-      {
-        test: /\.(tsx|ts|js)$/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            cacheCompression: false,
-            cacheDirectory: true,
-          },
+    plugins: [html],
+    resolve: {
+        extensions: ['.js', '.jsx', '.tsx', '.ts', '.json'],
+        alias: {
+            '@': path.resolve('src'),
         },
-        exclude: /node_modules/,
-      },
-      {
-        test: /\.(ts|tsx)$/,
-        use: {
-          loader: 'ts-loader',
-        },
-        exclude: /node_modules/,
-      },
-      {
-        test: /\.module\.s(a|c)ss$/,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-              sourceMap: true,
-            },
-          },
-          {
-            loader: 'sass-loader',
-            options: {
-              sourceMap: true,
-            },
-          },
-        ],
-      },
-    ],
-  },
-  plugins: [htmlWebpackPlugin],
-  resolve: {
-    extensions: ['.js', '.jsx', '.tsx', '.ts', '.json'],
-  },
-};
+    },
+}
