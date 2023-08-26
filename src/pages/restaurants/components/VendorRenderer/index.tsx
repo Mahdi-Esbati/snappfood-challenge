@@ -1,20 +1,20 @@
-import {
-    TextResponse,
-    VendorResponse,
-    isText,
-    isVendor,
-} from '@/api/vendors-list/types'
+import { isText, isVendor } from '@/api/vendors-list/types'
 
 import { VariableSizeList } from 'react-window'
 import AutoSizer from 'react-virtualized-auto-sizer'
 import RestaurantCard from '../RestaurantCard'
+import useAppSelector from '@/hooks/useAppSelector'
+import { vendorSelectors } from '@/pages/restaurants/store'
+
+const { restaurantSelector } = vendorSelectors
 
 interface Props {
-    data: (VendorResponse | TextResponse)[]
     onEndRender: () => void
 }
 
-const VendorRenderer: React.FC<Props> = ({ data, onEndRender }) => {
+const VendorRenderer: React.FC<Props> = ({ onEndRender }) => {
+    const data = useAppSelector(restaurantSelector)
+
     return (
         <AutoSizer>
             {({ height, width }) => (
