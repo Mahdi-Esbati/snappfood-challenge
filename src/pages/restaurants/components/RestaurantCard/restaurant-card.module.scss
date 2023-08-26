@@ -1,7 +1,8 @@
 .RestaurantCard {
+    height: 248px;
+    min-width: min(calc(100% - 4px), 260px);
     max-width: 567px;
 
-    min-width: min(calc(100% - 4px), 260px);
     border-radius: 6px;
     overflow: hidden;
 

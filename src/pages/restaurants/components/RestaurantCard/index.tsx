@@ -6,15 +6,17 @@ import { toFa } from '@/utils/number'
 
 interface Props {
     data: Vendor
+    style?: React.CSSProperties
 }
 
-const RestaurantCard: React.FC<Props> = ({ data }) => {
+const RestaurantCard: React.FC<Props> = ({ data, style }) => {
     return (
         <div
             className={clsx(
                 'd-flex flex-column w-100 shadow-main',
                 styles.RestaurantCard
             )}
+            style={style}
         >
             <header
                 className={clsx(
