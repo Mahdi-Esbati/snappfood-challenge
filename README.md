@@ -78,6 +78,16 @@ This repository contains my solution for the Snappfood's Frontend Engineer inter
     You can either get the response by using the `data` variable or by calling the async `request` function.
     There is a third way, you can pass a callback to the `successCallback` function and do some work when the request is done.
 
+## State Management Using Redux and Redux-Toolkit
+
+    This project utilizes Redux store as the global state management solution.
+    The reducers/actions are created using redux-toolkit slices and all of the stores
+    are completely typed using typescript.
+    The selectors are also memoized using `createSelector`
+
+    I personally think this small project did not need a global state management solution but
+    I implemented it for the sake of the interview.
+
 ## Infinite Loading and Virtualized Lists
 
     I've tried to implement the infinite loading part without using any external library.
